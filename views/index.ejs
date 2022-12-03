@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>GD Bulletin</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/images/logo.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.4.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <main>
+    <div class="container">
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <div class="d-flex justify-content-center py-4">
+                <a class="logo d-flex align-items-center w-auto">
+                  <img src="/images/logo.png" alt="">
+                </a>
+              </div><!-- End Logo -->
+
+
+              <div class="card mb-3">
+
+                <div class="card-body">
+
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Inicio de sesión</h5>
+                    <p class="text-center small">Ingrese sus datos para iniciar sesión</p>
+                  </div>
+
+                  <div class="row g-3 needs-validation" novalidate>
+
+                    <div class="col-12">
+                      <label for="yourUsername" class="form-label">Usuario</label>
+                      <div class="input-group has-validation">
+                        <input type="text" name="username" class="form-control" id="yourUsername" required>
+                        <div class="invalid-feedback">Por favor, ingrese su usuario.</div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label for="yourPassword" class="form-label">Contraseña</label>
+                      <div class="input-group">
+                        <input type="password" name="password" class="form-control" id="yourPassword" required>
+                        <div class="input-group-append">
+                          <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()">
+                            <span class="fa fa-eye-slash icon"></span> </button>
+                        </div>
+                        <div class="invalid-feedback">Por favor, ingrese su contraseña.</div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Recuérdame</label>
+                      </div>
+                    </div> -->
+                    <div id="divLoginError" class="group">
+                      <div id="lblLoginErrorMessage" class="errorlabel">Error message</div>
+                    </div>
+                    <div class="col-12">
+                      <button id="btnLogin" class="btn btn-primary w-100">Iniciar sesión</button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.min.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+
+  <!-- Template Main JS File -->
+  <script src="/javascripts/main.js"></script>
+
+
+  <!-- Funciones -->
+  <script type="text/javascript">
+    function mostrarPassword() {
+      var cambio = document.getElementById("yourPassword");
+      if (cambio.type == "password") {
+        cambio.type = "text";
+        $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      } else {
+        cambio.type = "password";
+        $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+      }
+    }
+
+    $(document).ready(function () {
+      if (divLoginError != null) {
+        divLoginError.style.display = 'none'
+        lblLoginErrorMessage.innerHTML = ''
+      }
+
+
+      $('#btnLogin').click(function () {
+
+        var user = $('#yourUsername').val();
+        var pass = $('#yourPassword').val();
+
+        if(user.length != 0 && pass.length != 0){
+          divLoginError.style.display = 'none'
+          $.ajax({
+                url:"http://localhost:3000/login",
+                method:"POST",
+                data:{user:user, password:pass},
+                dataType:"JSON",
+                success:function(data)
+                {
+                  console.log(data.message);
+                  if(data.message.length == 0){
+                    divLoginError.style.display = 'block'
+                    lblLoginErrorMessage.innerHTML = 'Credenciales de acceso incorrectas';
+                    $('#yourUsername').val('');
+                    $('#yourPassword').val('');
+                  }else{
+                    $.ajax({
+                      url:"http://localhost:3000/update",
+                      method:"POST",
+                      data:{user:user, password:pass},
+                      dataType:"JSON",
+                      success:function(data)
+                      {
+                        location.replace("http://localhost:3000/dashboard");
+                      }
+                    });
+                  }
+              
+                }
+            });
+
+        }else{
+          divLoginError.style.display = 'block'
+          lblLoginErrorMessage.innerHTML = 'Llene los campos para iniciar sesión';
+          $('#yourUsername').val('');
+          $('#yourPassword').val('');
+        }
+
+      });
+
+    });
+  </script>
+
+
+</body>
+
+</html>

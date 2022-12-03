@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>GD Bulletin</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/images/logo.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+  </script>
+  <script>
+    $(function () {
+      $('#header').load('/header')
+      $('#sidebar').load('/sidebar')
+    })
+  </script>
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.4.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body id="body">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center"></header>
+  <div class="modal fade" id="basicModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Cerrar sesión</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro de que quiere cerrar sesión? La información que aún no se ha guardado se perderá.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+          <button id="signOut" type="button" class="btn btn-primary">Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside id="sidebar" class="sidebar"></aside>
+
+  <main id="main" class="main">
+
+    <span id="message"></span>
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Reportes</h2>
+        <form method="get" id="report_form" class="row g-3 needs-validation">
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Alumnos</label>
+            <div class="col-sm-10">
+              <select id="select_names" name="student" class="form-select" multiple aria-label="multiple select example"
+                multiple required>
+              </select>
+              <div class="invalid-feedback">Please select a name</div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+              <input type="hidden" name="action" id="action" value="generate" />
+              <button id="btn-report" type="button" class="btn btn-primary">Generar Reporte</button>
+            </div>
+          </div>
+
+        </form><!-- End General Form Elements -->
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Documentos</h2>
+        <form id="uploadForm">
+          <div class="row mb-3">
+            <label for="inputNumber" class="col-sm-2 col-form-label">Archivo</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="file" id="myFiles" accept="application/pdf" multiple>
+            </div>
+          </div>
+          <div class="col-sm-12 btn-publish">
+            <button id="btn-publish" type="button" class="btn btn-primary">Publicar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    </div>
+    </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Instituto Gracia Dei</span></strong>. All Rights Reserved
+    </div>
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.min.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/javascripts/main.js"></script>
+
+</body>
+
+</html>
+
+<script>
+  $(document).ready(function () {
+
+    load_data();
+
+    function load_data() {
+      $.ajax({
+        url: "http://localhost:3000/reports/action",
+        method: "POST",
+        data: {
+          action: 'fetch_names'
+        },
+        dataType: "JSON",
+        success: function (data) {
+          var html = '';
+
+          if (data.data.length > 0) {
+            for (var count = 0; count < data.data.length; count++) {
+              html += ` <option value="` + data.data[count].USER_ID + `">
+        ` + data.data[count].NAME + `</option>
+        `;
+            }
+          }
+          $('#select_names').html(html);
+        }
+      });
+    }
+
+    $('#btn-report').on('click', function (event) {
+
+      event.preventDefault();
+
+
+      if ($('#report_form').serialize().includes('student')) {
+        var id = document.getElementById("select_names").value;
+        window.location = "http://localhost:3000/reports/generatePDF?id=" + id;
+      }else{
+        $('#message').html('<div class="alert alert-danger">Seleccione a un alumno</div>');
+        setTimeout(function () {
+          $('#message').html('');
+        }, 5000);
+      }
+
+    });
+
+    const form = document.getElementById('uploadForm')
+
+
+    const sendFiles = async () => {
+      //Object
+      const myFiles = document.getElementById('myFiles').files
+      const formData = new FormData()
+      Object.keys(myFiles).forEach(key => {
+        formData.append(myFiles.item(key).name, myFiles.item(key))
+      })
+
+
+      const response = await fetch('http://localhost:3000/files/upload', {
+        method: 'POST',
+        body: formData
+      })
+
+      const json = await response.json()
+
+      console.log(json?.status)
+
+      if (json?.status == 'success') {
+        $('#message').html('<div class="alert alert-success">' + json?.message + '</div>');
+        setTimeout(function () {
+          $('#message').html('');
+        }, 5000);
+
+      } else if (json?.status == 'empty') {
+        $('#message').html('<div class="alert alert-danger">' + json?.message + '</div>');
+        setTimeout(function () {
+          $('#message').html('');
+        }, 5000);
+      }
+
+    }
+
+    $('#btn-publish').on('click', (e) => {
+      e.preventDefault()
+      sendFiles()
+    })
+
+    $('#signOut').click(function () {
+      $.ajax({
+        url: "http://localhost:3000/header/signOut",
+        method: "POST",
+        data: {
+          action: 'signOut',
+        },
+        dataType: "JSON",
+        success: function (data) {
+          location.replace("http://localhost:3000/");
+        }
+      });
+    });
+
+  });
+</script>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>GD Bulletin</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/images/logo.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+  </script>
+  <script>
+    $(function () {
+      $('#header').load('/header')
+      $('#sidebar').load('/sidebar')
+    })
+  </script>
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.4.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body id="body">
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center"></header>
+  <div class="modal fade" id="basicModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Cerrar sesión</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro de que quiere cerrar sesión? La información que aún no se ha guardado se perderá.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+          <button id="signOut" type="button" class="btn btn-primary">Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside id="sidebar" class="sidebar"></aside>
+
+  <main id="main" class="main">
+
+    <span id="message"></span>
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Calificaciones</h2>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label">Alumno</label>
+          <div class="col-sm-10">
+            <select id="select_names" class="form-select" aria-label="Seleccione un alumno">
+            </select>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label style="visibility: hidden;" id="label_avg" class="col-sm-2 col-form-label">Promedio</label>
+          <label style="visibility: hidden;" id="avg" class="col-sm-2 col-form-label">85</label>
+        </div>
+
+        <!-- Table with stripped rows -->
+        <table id="grades_table" class=" cell-centered table table-bordered">
+          <tbody>
+          </tbody>
+        </table>
+        <!-- End Table with stripped rows -->
+        <button style="visibility: hidden;" type="button" id="add_subject" class="btn btn-primary"
+          data-bs-toggle="modal" data-bs-target="#verticalycentered">
+          Agregar Materia
+        </button>
+      </div>
+
+    </div>
+
+    </div>
+    </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Instituto Gracia Dei</span></strong>. All Rights Reserved
+    </div>
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.min.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/javascripts/main.js"></script>
+
+</body>
+
+</html>
+
+<div class="modal fade" tabindex="-1" id="action_modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="card-title text-center pb-0 fs-4" id="dynamic_modal_title">Registrar nueva materia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="container">
+        <section class="section register d-flex flex-column align-items-center justify-content-center py-4">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                <div class="card mb-3">
+
+                  <div class="card-body">
+
+                    <form method="post" id="subject_form" class="row g-3 needs-validation">
+                      <div class="col-12">
+                        <label for="subject" class="form-label">Materia</label>
+                        <select id="select_subjects" class="form-select" name="subject" id="subject" required>
+                        </select>
+                        <div class="invalid-feedback">Please select a subject</div>
+                      </div>
+                      <div class="col-12">
+                        <label for="begin" class="form-label">Iniciar desde</label>
+                        <select id="select_numbers" class="form-select" name="begin" id="begin" required>
+                        </select>
+                        <div class="invalid-feedback">Please select a beginning PACE</div>
+                      </div>
+                      <div class="modal-footer">
+                        <input type="hidden" name="id" id="id" />
+                        <input type="hidden" name="action" id="action" value="Add" />
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="action_button">Agregar</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+
+    load_data();
+
+    function load_data() {
+      $.ajax({
+        url: "http://localhost:3000/grades/action",
+        method: "POST",
+        data: {
+          action: 'fetch_names'
+        },
+        dataType: "JSON",
+        success: function (data) {
+          var html = '<option selected></option>';
+
+          if (data.data.length > 0) {
+            for (var count = 0; count < data.data.length; count++) {
+              html += ` <option value="` + data.data[count].USER_ID + `">
+            ` + data.data[count].NAME + `</option>
+            `;
+            }
+          }
+
+          $('#select_names').html(html);
+        }
+      });
+    }
+
+    $('#select_names').change(function () {
+      var id = document.getElementById("select_names").value;
+      if (id != "") {
+        document.getElementById('add_subject').style.visibility = 'visible';
+        document.getElementById('label_avg').style.visibility = 'visible';
+        document.getElementById('avg').style.visibility = 'visible';
+        document.getElementById('add_subject').setAttribute("name", id);
+      } else {
+        document.getElementById('add_subject').style.visibility = 'hidden';
+        document.getElementById('label_avg').style.visibility = 'hidden';
+        document.getElementById('avg').style.visibility = 'hidden';
+      }
+      $.ajax({
+        url: "http://localhost:3000/grades/action",
+        method: "POST",
+        data: {
+          id: id,
+          action: 'fetch_grades'
+        },
+        dataType: "JSON",
+        success: function (data) {
+          var html = '';
+          var average = 0;
+          var total = 0;
+          if (data.data.length > 0) {
+            for (var count = 0; count < data.data.length; count++) {
+              var subject = `<td class="width-20" style="background-color:` + data.data[count].COLOR +
+                `;" rowspan="2">` +
+                data.data[count].SUBJECT_NAME + `</td>`;
+              var pace = `<td class="width-15">` + data.data[count].PACE_NUMBER + `</td>`;
+              var grade = `<td class="width-15"><input data-id="` + data.data[count].GRADE_ID +
+                `" class="no-border grade_input" type="number" value="` + data.data[count].GRADE +
+                `"size="4" min="80" max="100"></td>`;
+              var add =
+                `<td class="width-5" rowspan="2"><button type="button" class="btn btn-success btn-sm add" data-id="` +
+                data.data[count].SUBJECT_ID + `">+</button></td>`;
+              if (html.includes(subject) == false) {
+                html += `<tr>` + add + subject + pace + `</tr><tr>` + grade + `</tr>`;
+              } else {
+                var index = html.lastIndexOf(subject) + subject.length;
+                index = html.indexOf("</tr>", index);
+                html = [html.slice(0, index), pace, html.slice(index)].join('');
+                index = html.indexOf("</tr>", index + pace.length + 6);
+                html = [html.slice(0, index), grade, html.slice(index)].join('');
+              }
+              if(data.data[count].GRADE != 0){
+                average = (average + data.data[count].GRADE);
+                total += 1;
+              }
+              
+            }
+
+            average = average / total;
+          }
+
+          $('#avg').text(average.toFixed(2) + "%");
+          $('#grades_table tbody').html(html);
+        }
+      });
+
+    });
+
+    $(document).on('change', '.grade_input', function () {
+      var id = $(this).data('id');
+      var grade = $(this).val();
+      if (grade >= 80 && grade <= 100) {
+        $.ajax({
+          url: "http://localhost:3000/grades/action",
+          method: "POST",
+          data: {
+            id: id,
+            grade: grade,
+            action: 'edit'
+          },
+          dataType: "JSON",
+          success: function (data) {
+            $('#message').html('<div class="alert alert-success">' + data.message + '</div>');
+            $('#select_names').change();
+            setTimeout(function () {
+              $('#message').html('');
+            }, 5000);
+          }
+        });
+      } else {
+        $('#message').html('<div class="alert alert-danger">Ingrese un valor válido</div>');
+        $('#select_names').change();
+        setTimeout(function () {
+          $('#message').html('');
+        }, 5000);
+      }
+
+    });
+
+    $('#add_subject').click(function () {
+
+      var id = document.getElementById('add_subject').getAttribute('name');
+
+      $.ajax({
+        url: "http://localhost:3000/grades/action",
+        method: "POST",
+        data: {
+          action: 'fetch_subject_info',
+          id: id
+        },
+        dataType: "JSON",
+        success: function (data) {
+          var html = '<option selected></option>';
+
+          //SUBJECT DATA
+          if (data.data.length > 0) {
+            for (var count = 0; count < data.data.length; count++) {
+              html += ` <option value="` + data.data[count].SUBJECT_ID + `">
+            ` + data.data[count].SUBJECT_NAME + `</option>
+            `;
+            }
+          }
+
+          $('#select_subjects').html(html);
+        }
+      });
+
+
+      $('#dynamic_modal_title').text('Agregar Materia');
+
+      $('#subject_form')[0].reset();
+
+      $('#action').val('Add');
+
+      $('#action_button').text('Agregar');
+
+      $('#action_modal').modal('show');
+
+      document.getElementById('id').setAttribute("value", id);
+
+
+    });
+
+
+    $('#select_subjects').change(function () {
+
+      var id = document.getElementById("select_subjects").value;
+
+      $.ajax({
+        url: "http://localhost:3000/grades/action",
+        method: "POST",
+        data: {
+          action: 'fetch_number_info',
+          id: id
+        },
+        dataType: "JSON",
+        success: function (data) {
+          var html = '<option selected></option>';
+
+          //NUMBER DATA
+          if (data.data.length > 0) {
+            for (var count = data.data[0].LOW_RANGE; count <= data.data[0].HIGH_RANGE; count++) {
+              html += ` <option value="` + count + `">
+      ` + count + `</option>
+      `;
+            }
+          }
+
+          $('#select_numbers').html(html);
+        }
+      });
+
+    });
+
+
+
+    $('#subject_form').on('submit', function (event) {
+
+      event.preventDefault();
+
+      var id = document.getElementById('add_subject').getAttribute('name');
+
+      $.ajax({
+        url: "http://localhost:3000/grades/action",
+        method: "POST",
+        data: $('#subject_form').serialize(),
+        dataType: "JSON",
+        beforeSend: function () {
+          $('#action_button').attr('disabled', 'disabled');
+        },
+        success: function (data) {
+
+          $('#action_button').attr('disabled', false);
+
+          $('#message').html('<div class="alert alert-success">' + data.message + '</div>');
+
+          $('#action_modal').modal('hide');
+
+          $('#select_names').change();
+
+          setTimeout(function () {
+            $('#message').html('');
+          }, 5000);
+        }
+      });
+
+    });
+
+    $(document).on('click', '.add', function () {
+
+      var id = $(this).data('id');
+      var user = document.getElementById("select_names").value;
+
+      $.ajax({
+        url: "http://localhost:3000/grades/action",
+        method: "POST",
+        data: {
+          id: id,
+          action: 'comparison'
+        },
+        dataType: "JSON",
+        success: function (data) {
+          var max = data.data[0].HIGH_RANGE;
+          var actual = data.data[0].MAX;
+
+          if(actual<max){
+            actual = actual + 1;
+            console.log(actual);
+            $.ajax({
+            url: "http://localhost:3000/grades/action",
+            method: "POST",
+            data: {
+              user: user,
+              subject: id,
+              number: actual, 
+              action: 'add_cell'
+            },
+            dataType: "JSON",
+            success: function (data) {
+              $('#select_names').change();
+            }
+          });
+          }else{
+            $(this).attr('disabled', false);
+            $(this).attr('style',  'background-color:gray');
+          }
+        }
+      });
+
+    });
+
+    $('#signOut').click(function () {
+      $.ajax({
+        url: "http://localhost:3000/header/signOut",
+        method: "POST",
+        data: {
+          action: 'signOut',
+        },
+        dataType: "JSON",
+        success: function (data) {
+          location.replace("http://localhost:3000/");
+        }
+      });
+    });
+
+  });
+</script>

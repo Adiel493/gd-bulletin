@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <title>GD Bulletin</title>
+        <!-- <script type="module" src="/subjects"></script> -->
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+
+        <!-- Favicons -->
+        <link href="/images/logo.png" rel="icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Vendor CSS Files -->
+        <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+        <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+        <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+        <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+        
+        <!-- Template Main CSS File -->
+        <link href="/stylesheets/style.css" rel="stylesheet">
+
+        <script
+          src="https://code.jquery.com/jquery-3.6.1.min.js"
+          integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+          crossorigin="anonymous">
+        </script>
+        <script>
+          $(function(){
+            $('#header').load('/header')
+            $('#sidebar').load('/sidebar')
+          })
+        </script>
+        <!-- =======================================================
+        * Template Name: NiceAdmin - v2.4.0
+        * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+        * Author: BootstrapMade.com
+        * License: https://bootstrapmade.com/license/
+        ======================================================== -->
+    </head>
+    <body id="body">
+        <!-- ======= Header ======= -->
+        <header id="header" class="header fixed-top d-flex align-items-center"></header>
+        <div class="modal fade" id="basicModal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Cerrar sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+              ¿Está seguro de que quiere cerrar sesión? La información que aún no se ha guardado se perderá.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Regresar</button>
+                <button id="signOut" type="button" class="btn btn-primary">Cerrar sesión</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside id="sidebar" class="sidebar"></aside>
+
+        <main id="main" class="main">
+
+          <span id="message"></span>
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Usuarios</h2>
+
+              <!-- Table with stripped rows -->
+              <table class="table" id="user_table">
+                <thead>
+                  <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Nivel</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <button type="button" id="add_data" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+      Agregar Usuario
+    </button>
+    </main>
+
+          <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
+          <div class="copyright">
+            &copy; Copyright <strong><span>Instituto Gracia Dei</span></strong>. All Rights Reserved
+          </div>
+          
+        </footer><!-- End Footer -->
+
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Vendor JS Files -->
+        <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/vendor/chart.js/chart.min.js"></script>
+        <script src="/vendor/echarts/echarts.min.js"></script>
+        <script src="/vendor/quill/quill.min.js"></script>
+        <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+        <script src="/vendor/tinymce/tinymce.min.js"></script>
+        <script src="/vendor/php-email-form/validate.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="/javascripts/main.js"></script>
+    </body>
+</html>
+
+<div class="modal fade" tabindex="-1" id="action_modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="card-title text-center pb-0 fs-4" id="dynamic_modal_title">Registrar nuevo usuario</h5> 
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="container">
+        <section class="section register d-flex flex-column align-items-center justify-content-center py-4">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-6 d-flex flex-column align-items-center justify-content-center">
+    
+                  <div class="card mb-3">
+    
+                    <div class="card-body">
+    
+                        <form method="post" id="user_form" class="row g-3 needs-validation">
+                        <div class="col-12">
+                          <label for="yourFullName" class="form-label">Nombre Completo</label>
+                          <input type="text" name="name" class="form-control" id="yourFullName" required>
+                          <div class="invalid-feedback">Por favor, ingrese su nombre completo</div>
+                        </div>
+                        <div class="col-12">
+                          <label for="yourEmail" class="form-label">Correo electrónico</label>
+                          <input type="email" name="email" class="form-control" id="yourEmail" required>
+                          <div class="invalid-feedback">Por favor, ingrese un coreo electrónico</div>
+                        </div>
+                        <div class="col-12">
+                          <label for="yourPhone" class="form-label">Teléfono</label>
+                          <input type="text" name="phone" class="form-control" id="yourPhone" required>
+                          <div class="invalid-feedback">Por facor, ingrese su número</div>
+                        </div>
+                        <div class="col-12">
+                          <label for="yourRole" class="form-label">Rol</label>
+                            <select name="role" class="form-select" id="yourRole" required>
+                              <option value=""></option>
+                              <option value="ADMIN">Admin</option>
+                              <option value="MAESTRO">Maestro</option>
+                              <option value="ALUMNO">Alumno</option>
+                            </select>
+                            <div class="invalid-feedback">Por favor, ingrese su rol</div>
+                        </div>
+                        <div class="col-12">
+                          <label for="yourLevel" class="form-label">Nivel</label>
+                          <select class="form-select" name="level" id="yourLevel">
+                            <option value=""></option>
+                            <option value="General">General</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <div class="invalid-feedback">Por favor, seleccione un nivel</div>
+                        </div>
+                        <div class="col-12">
+                          <label for="yourPassword" class="form-label">Contraseña</label>
+                          <div class="input-group">
+                            <input type="password" name="password" class="form-control" id="yourPassword" required>
+                            <div class="input-group-append">
+                              <button id="show_password" class="btn btn-primary" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                            </div>
+                            <div class="invalid-feedback">Por favor, ingrese su contraseña</div>
+                          </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <input type="hidden" name="id" id="id" />
+                            <input type="hidden" name="action" id="action" value="Add" />
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" id="action_button">Agregar</button>
+                          </div>
+                    </form>
+    
+                    </div>
+                  </div>
+    
+                  
+    
+                </div>
+              </div>
+            </div>
+    
+          </section>
+  
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+function mostrarPassword() {
+      var cambio = document.getElementById("yourPassword");
+      if (cambio.type == "password") {
+        cambio.type = "text";
+        $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+      } else {
+        cambio.type = "password";
+        $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+      }
+    }
+
+$(document).ready(function(){
+
+
+    load_data();
+
+    function load_data()
+    {
+        $.ajax({
+            url:"http://localhost:3000/users/action",
+            method:"POST",
+            data:{action:'fetch'},
+            dataType : "JSON",
+            success:function(data)
+            {
+                var html = '';
+
+                if(data.data.length > 0)
+                {
+                    for(var count = 0; count < data.data.length; count++)
+                    {
+                        html += `
+                        <tr>
+                            <td>`+data.data[count].NAME+`</td>
+                            <td>`+data.data[count].LEVEL+`</td>
+                            <td>`+data.data[count].EMAIL+`</td>
+                            <td>`+data.data[count].ROLE+`</td>
+                            <td><button type="button" class="btn btn-warning btn-sm edit" data-id="`+data.data[count].USER_ID+`">Editar</button>&nbsp;<button type="button" class="btn btn-danger btn-sm delete" data-id="`+data.data[count].USER_ID+`">Eliminar</button></td>
+                        </tr>
+                        `;
+                    }
+                }
+
+                $('#user_table tbody').html(html);
+            }
+        });
+    }
+
+    $('#add_data').click(function(){
+
+        $('#dynamic_modal_title').text('Agregar Usuario');
+
+        $('#user_form')[0].reset();
+
+        $('#action').val('Add');
+
+        $('#action_button').text('Agregar');
+
+        $('#action_modal').modal('show');
+
+    });
+
+    $('#user_form').on('submit', function(event){
+
+        event.preventDefault();
+        console.log($('#user_form').serialize());
+
+        $.ajax({
+            url:"http://localhost:3000/users/action",
+            method:"POST",
+            data:$('#user_form').serialize(),
+            dataType:"JSON",
+            beforeSend:function(){
+                $('#action_button').attr('disabled', 'disabled');
+            },
+            success:function(data)
+            {
+                $('#action_button').attr('disabled', false);
+
+                $('#message').html('<div class="alert alert-success">'+data.message+'</div>');
+
+                $('#action_modal').modal('hide');
+
+                load_data();
+
+                setTimeout(function(){
+                    $('#message').html('');
+                }, 5000);
+            }
+        });
+
+    });
+
+    $(document).on('click', '.edit', function(){
+
+        var id = $(this).data('id');
+        
+
+        $('#dynamic_modal_title').text('Editar Usuario');
+
+        $('#action').val('Edit');
+
+        $('#action_button').text('Editar');
+
+        $('#action_modal').modal('show');
+
+        $.ajax({
+            url:"http://localhost:3000/users/action",
+            method:"POST",
+            data:{id:id, action:'fetch_single'},
+            dataType:"JSON",
+            success:function(data)
+            {
+                $('#yourFullName').val(data.NAME);
+                $('#yourRole').val(data.ROLE);
+                $('#yourLevel').val(data.LEVEL);
+                $('#yourEmail').val(data.EMAIL);
+                $('#yourPassword').val(data.PASS);
+                $('#id').val(data.USER_ID);
+                $('#yourPhone').val(data.PHONE);
+              
+            }
+        });
+
+    });
+
+    $(document).on('click', '.delete', function(){
+
+        var id = $(this).data('id');
+
+        if(confirm("¿Estás seguro que quieres eliminar al usuario?"))
+        {
+            $.ajax({
+                url:"http://localhost:3000/users/action",
+                method:"POST",
+                data:{action:'delete', id:id},
+                dataType:"JSON",
+                success:function(data)
+                {
+                    $('#message').html('<div class="alert alert-success">'+data.message+'</div>');
+                    load_data();
+                    setTimeout(function(){
+                        $('#message').html('');
+                    }, 5000);
+                }
+            });
+        }
+
+    });
+
+    $('#signOut').click(function () {
+      $.ajax({
+        url: "http://localhost:3000/header/signOut",
+        method: "POST",
+        data: {
+          action: 'signOut',
+        },
+        dataType: "JSON",
+        success: function (data) {
+          location.replace("http://localhost:3000/");
+        }
+      });
+    });
+
+});
+
+</script>

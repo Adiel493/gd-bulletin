@@ -1,0 +1,67 @@
+<ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/dashboard">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li id="users" class="nav-item">
+      <a class="nav-link collapsed" href="/users">
+        <i class="bi bi-person"></i>
+        <span>Usuarios</span>
+      </a>
+    </li>
+
+    <li id="subjects" class="nav-item">
+      <a class="nav-link collapsed" href="/subjects">
+        <i class="bi bi-book"></i>
+        <span>Materias</span>
+      </a>
+    </li>
+    <li id="grades" class="nav-item">
+      <a class="nav-link collapsed" href="/grades">
+        <i class="bi bi-percent"></i>
+        <span>Calificaciones</span>
+      </a>
+    </li>
+    <li id="archivo" class="nav-item">
+      <a class="nav-link collapsed" href="/reports">
+        <i class="bi bi-file-earmark-pdf"></i>
+        <span>Archivos</span>
+      </a>
+    </li>
+</ul>
+
+<script>
+restrict_info();
+    function restrict_info() {
+      $.ajax({
+        url: "http://localhost:3000/header/userInfo",
+        method: "POST",
+        data: {
+          action: 'fetch_user'
+        },
+        dataType: "JSON",
+        success: function (data) {
+          if(data.ROLE == 'ALUMNO'){
+            archivo.style.display = 'none';
+            grades.style.display = 'none';
+            subjects.style.display = 'none';
+            users.style.display = 'none';
+          }else if (data.ROLE == 'MAESTRO'){
+            users.style.display = 'none';
+            archivo.style.display = 'none';
+          }else if(data.ROLE == 'ADMIN'){
+
+          }else{
+            archivo.style.display = 'none';
+            users.style.display = 'none';
+            grades.style.display = 'none';
+            subjects.style.display = 'none';
+          }
+        }
+      });
+    }
+</script>
