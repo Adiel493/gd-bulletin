@@ -87,7 +87,7 @@
     display_info();
     function display_info() {
       $.ajax({
-        url: "http://localhost:3000/header/userInfo",
+        url: "https://www.gdbulletin.com/header/userInfo",
         method: "POST",
         data: {
           action: 'fetch_user'
@@ -100,7 +100,7 @@
             $('#user-dropdown').text(data.NAME);
             $('#user').text(data.NAME);
           }else{
-            location.replace("http://localhost:3000/");
+            location.replace("https://www.gdbulletin.com/");
           }
           
         }

@@ -227,7 +227,7 @@
 
     function load_data() {
       $.ajax({
-        url: "http://localhost:3000/subjects/action",
+        url: "https://www.gdbulletin.com/subjects/action",
         method: "POST",
         data: {
           action: 'fetch'
@@ -278,7 +278,7 @@
       console.log($('#subject_form').serialize());
 
       $.ajax({
-        url: "http://localhost:3000/subjects/action",
+        url: "https://www.gdbulletin.com/subjects/action",
         method: "POST",
         data: $('#subject_form').serialize(),
         dataType: "JSON",
@@ -316,7 +316,7 @@
       $('#action_modal').modal('show');
 
       $.ajax({
-        url: "http://localhost:3000/subjects/action",
+        url: "https://www.gdbulletin.com/subjects/action",
         method: "POST",
         data: {
           id: id,
@@ -343,7 +343,7 @@
 
       if (confirm("¿Estás seguro que quieres eliminar la materia?")) {
         $.ajax({
-          url: "http://localhost:3000/subjects/action",
+          url: "https://www.gdbulletin.com/subjects/action",
           method: "POST",
           data: {
             action: 'delete',
@@ -364,14 +364,14 @@
 
     $('#signOut').click(function () {
       $.ajax({
-        url: "http://localhost:3000/header/signOut",
+        url: "https://www.gdbulletin.com/header/signOut",
         method: "POST",
         data: {
           action: 'signOut',
         },
         dataType: "JSON",
         success: function (data) {
-          location.replace("http://localhost:3000/");
+          location.replace("https://www.gdbulletin.com/");
         }
       });
     });

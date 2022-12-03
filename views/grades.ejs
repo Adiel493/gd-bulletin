@@ -195,7 +195,7 @@
 
     function load_data() {
       $.ajax({
-        url: "http://localhost:3000/grades/action",
+        url: "https://www.gdbulletin.com/grades/action",
         method: "POST",
         data: {
           action: 'fetch_names'
@@ -230,7 +230,7 @@
         document.getElementById('avg').style.visibility = 'hidden';
       }
       $.ajax({
-        url: "http://localhost:3000/grades/action",
+        url: "https://www.gdbulletin.com/grades/action",
         method: "POST",
         data: {
           id: id,
@@ -284,7 +284,7 @@
       var grade = $(this).val();
       if (grade >= 80 && grade <= 100) {
         $.ajax({
-          url: "http://localhost:3000/grades/action",
+          url: "https://www.gdbulletin.com/grades/action",
           method: "POST",
           data: {
             id: id,
@@ -315,7 +315,7 @@
       var id = document.getElementById('add_subject').getAttribute('name');
 
       $.ajax({
-        url: "http://localhost:3000/grades/action",
+        url: "https://www.gdbulletin.com/grades/action",
         method: "POST",
         data: {
           action: 'fetch_subject_info',
@@ -360,7 +360,7 @@
       var id = document.getElementById("select_subjects").value;
 
       $.ajax({
-        url: "http://localhost:3000/grades/action",
+        url: "https://www.gdbulletin.com/grades/action",
         method: "POST",
         data: {
           action: 'fetch_number_info',
@@ -394,7 +394,7 @@
       var id = document.getElementById('add_subject').getAttribute('name');
 
       $.ajax({
-        url: "http://localhost:3000/grades/action",
+        url: "https://www.gdbulletin.com/grades/action",
         method: "POST",
         data: $('#subject_form').serialize(),
         dataType: "JSON",
@@ -425,7 +425,7 @@
       var user = document.getElementById("select_names").value;
 
       $.ajax({
-        url: "http://localhost:3000/grades/action",
+        url: "https://www.gdbulletin.com/grades/action",
         method: "POST",
         data: {
           id: id,
@@ -440,7 +440,7 @@
             actual = actual + 1;
             console.log(actual);
             $.ajax({
-            url: "http://localhost:3000/grades/action",
+            url: "https://www.gdbulletin.com/grades/action",
             method: "POST",
             data: {
               user: user,
@@ -464,14 +464,14 @@
 
     $('#signOut').click(function () {
       $.ajax({
-        url: "http://localhost:3000/header/signOut",
+        url: "https://www.gdbulletin.com/header/signOut",
         method: "POST",
         data: {
           action: 'signOut',
         },
         dataType: "JSON",
         success: function (data) {
-          location.replace("http://localhost:3000/");
+          location.replace("https://www.gdbulletin.com/");
         }
       });
     });

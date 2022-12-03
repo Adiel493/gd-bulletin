@@ -163,7 +163,7 @@
         if(user.length != 0 && pass.length != 0){
           divLoginError.style.display = 'none'
           $.ajax({
-                url:"http://localhost:3000/login",
+                url:"https://www.gdbulletin.com/login",
                 method:"POST",
                 data:{user:user, password:pass},
                 dataType:"JSON",
@@ -177,13 +177,13 @@
                     $('#yourPassword').val('');
                   }else{
                     $.ajax({
-                      url:"http://localhost:3000/update",
+                      url:"https://www.gdbulletin.com/update",
                       method:"POST",
                       data:{user:user, password:pass},
                       dataType:"JSON",
                       success:function(data)
                       {
-                        location.replace("http://localhost:3000/dashboard");
+                        location.replace("https://www.gdbulletin.com/dashboard");
                       }
                     });
                   }

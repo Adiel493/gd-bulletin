@@ -241,7 +241,7 @@ $(document).ready(function(){
     function load_data()
     {
         $.ajax({
-            url:"http://localhost:3000/users/action",
+            url:"https://www.gdbulletin.com/users/action",
             method:"POST",
             data:{action:'fetch'},
             dataType : "JSON",
@@ -290,7 +290,7 @@ $(document).ready(function(){
         console.log($('#user_form').serialize());
 
         $.ajax({
-            url:"http://localhost:3000/users/action",
+            url:"https://www.gdbulletin.com/users/action",
             method:"POST",
             data:$('#user_form').serialize(),
             dataType:"JSON",
@@ -329,7 +329,7 @@ $(document).ready(function(){
         $('#action_modal').modal('show');
 
         $.ajax({
-            url:"http://localhost:3000/users/action",
+            url:"https://www.gdbulletin.com/users/action",
             method:"POST",
             data:{id:id, action:'fetch_single'},
             dataType:"JSON",
@@ -355,7 +355,7 @@ $(document).ready(function(){
         if(confirm("¿Estás seguro que quieres eliminar al usuario?"))
         {
             $.ajax({
-                url:"http://localhost:3000/users/action",
+                url:"https://www.gdbulletin.com/users/action",
                 method:"POST",
                 data:{action:'delete', id:id},
                 dataType:"JSON",
@@ -374,14 +374,14 @@ $(document).ready(function(){
 
     $('#signOut').click(function () {
       $.ajax({
-        url: "http://localhost:3000/header/signOut",
+        url: "https://www.gdbulletin.com/header/signOut",
         method: "POST",
         data: {
           action: 'signOut',
         },
         dataType: "JSON",
         success: function (data) {
-          location.replace("http://localhost:3000/");
+          location.replace("https://www.gdbulletin.com/");
         }
       });
     });

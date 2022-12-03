@@ -123,14 +123,14 @@
 <script>
   $('#signOut').click(function () {
       $.ajax({
-        url: "http://localhost:3000/header/signOut",
+        url: "https://www.gdbulletin.com/header/signOut",
         method: "POST",
         data: {
           action: 'signOut',
         },
         dataType: "JSON",
         success: function (data) {
-          location.replace("http://localhost:3000/");
+          location.replace("https://www.gdbulletin.com/");
         }
       });
     });

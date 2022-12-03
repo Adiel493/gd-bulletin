@@ -157,7 +157,7 @@
 
     function load_data() {
       $.ajax({
-        url: "http://localhost:3000/reports/action",
+        url: "https://www.gdbulletin.com/reports/action",
         method: "POST",
         data: {
           action: 'fetch_names'
@@ -185,7 +185,7 @@
 
       if ($('#report_form').serialize().includes('student')) {
         var id = document.getElementById("select_names").value;
-        window.location = "http://localhost:3000/reports/generatePDF?id=" + id;
+        window.location = "https://www.gdbulletin.com/reports/generatePDF?id=" + id;
       }else{
         $('#message').html('<div class="alert alert-danger">Seleccione a un alumno</div>');
         setTimeout(function () {
@@ -207,7 +207,7 @@
       })
 
 
-      const response = await fetch('http://localhost:3000/files/upload', {
+      const response = await fetch('https://www.gdbulletin.com/files/upload', {
         method: 'POST',
         body: formData
       })
@@ -238,14 +238,14 @@
 
     $('#signOut').click(function () {
       $.ajax({
-        url: "http://localhost:3000/header/signOut",
+        url: "https://www.gdbulletin.com/header/signOut",
         method: "POST",
         data: {
           action: 'signOut',
         },
         dataType: "JSON",
         success: function (data) {
-          location.replace("http://localhost:3000/");
+          location.replace("https://www.gdbulletin.com/");
         }
       });
     });
